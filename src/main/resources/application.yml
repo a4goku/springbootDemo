@@ -1,3 +1,67 @@
 server:
   port: 9003
   context-path: /springbootDemo
+  session:
+    timeout: 900
+
+druid:
+  type: com.alibaba.druid.pool.DruidDataSource
+  master:
+    url: dbc:mysql:10.211.55.32:3306/mail?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    initialSize: 5
+    munIdle: 1
+    #maxIdle: 10
+    maxActive: 100
+    maxWait: 6000
+    timeBetweenEvictionRunsMillis: 6000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1 FROM DUAL
+    testWileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPrepareStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    useGlobalDataSourceStat: true
+  slave:
+    url: dbc:mysql:10.211.55.32:3306/mail?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    initialSize: 5
+    munIdle: 1
+    #maxIdle: 10
+    maxActive: 100
+    maxWait: 6000
+    timeBetweenEvictionRunsMillis: 6000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1 FROM DUAL
+    testWileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPrepareStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    useGlobalDataSourceStat: true
+mybatis:
+  type-aliases-package: com.springboot.demo
+  mapper-locations: classpath:com/springboot/demo/mapping/*.xml
+
+logging:
+  level:
+    tk.mybatis: TRACE
+
+#mapper:
+#   mappers:
+#       -com.xxx.xxx.BaseMapper
+#   not-empty: false
+#   identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
